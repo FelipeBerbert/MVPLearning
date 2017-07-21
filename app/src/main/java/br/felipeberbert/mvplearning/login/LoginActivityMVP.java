@@ -23,7 +23,7 @@ public interface LoginActivityMVP {
 
         void setView(LoginActivityMVP.View view);
 
-        void loginButtonClicked();
+        void saveUser();
 
         void getCurrentUser();
     }

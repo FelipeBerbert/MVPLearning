@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.loginButtonClicked();
+                presenter.saveUser();
             }
         });
     }

@@ -22,7 +22,7 @@ public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
     }
 
     @Override
-    public void loginButtonClicked() {
+    public void saveUser() {
 
         if (view != null){
             if (view.getFirstName().trim().isEmpty() || view.getLastName().trim().isEmpty()) {
