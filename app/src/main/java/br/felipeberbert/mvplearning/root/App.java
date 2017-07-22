@@ -2,6 +2,7 @@ package br.felipeberbert.mvplearning.root;
 
 import android.app.Application;
 
+import br.felipeberbert.mvplearning.http.ApiModule;
 import br.felipeberbert.mvplearning.login.LoginModule;
 
 /**
@@ -19,6 +20,7 @@ public class App extends Application {
         component = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .loginModule(new LoginModule())
+                .apiModule(new ApiModule())
                 .build();
     }
 
