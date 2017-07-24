@@ -19,6 +19,11 @@ import br.felipeberbert.mvplearning.root.App;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Observable;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 public class LoginActivity extends AppCompatActivity implements LoginActivityMVP.View {
 
@@ -66,6 +71,44 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
                 t.printStackTrace();
             }
         });
+
+
+        twitchAPI.getTopGamesObservable("h0q6kpca4f01sb3jlykbn5scryerjm").flatMap(new Func1<Twitch, Observable<Top>>() {
+            @Override
+            public Observable<Top> call(Twitch twitch) {
+
+                return Observable.from(twitch.getTop());
+            }
+        }).flatMap(new Func1<Top, Observable<String>>() {
+            @Override
+            public Observable<String> call(Top top) {
+                return Observable.just(top.getGame().getName());
+            }
+        })
+                .filter(new Func1<String, Boolean>() {
+                    @Override
+                    public Boolean call(String s) {
+                        return s.startsWith("H");
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        System.out.println("From rxJava: " + s);
+                    }
+                });
     }
 
     @Override
