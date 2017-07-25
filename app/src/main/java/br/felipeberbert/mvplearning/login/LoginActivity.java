@@ -16,6 +16,8 @@ import br.felipeberbert.mvplearning.http.TwitchAPI;
 import br.felipeberbert.mvplearning.http.apimodel.Top;
 import br.felipeberbert.mvplearning.http.apimodel.Twitch;
 import br.felipeberbert.mvplearning.root.App;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,9 +35,14 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     @Inject
     TwitchAPI twitchAPI;
 
-    private EditText firstName;
-    private EditText lastName;
-    private Button login;
+    @BindView(R.id.fistName)
+    EditText firstName;
+
+    @BindView(R.id.lastName)
+    EditText lastName;
+
+    @BindView(R.id.login)
+    Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +50,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
         setContentView(R.layout.activity_login);
 
         ((App) getApplication()).getComponent().inject(this);
-
-        firstName = (EditText) findViewById(R.id.fistName);
-        lastName = (EditText) findViewById(R.id.lastName);
-        login = (Button) findViewById(R.id.login);
+        ButterKnife.bind(this);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -18,13 +18,18 @@ android {
         }
     }
 }
-
+ext{
+    supportLibraryVersion = '25.3.1'
+    retrofitVersion = '2.0.2'
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
@@ -36,15 +41,15 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     //rest
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     //JSON parsing
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile 'com.google.code.gson:gson:2.7'
     //http logging
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
     //Rx Java
     compile 'io.reactivex:rxandroid:1.2.0'
     compile 'io.reactivex:rxjava:1.1.5'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
 
 }
